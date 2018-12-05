@@ -1,0 +1,227 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-AU" lang="en-AU">
+
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+<link href="http://purl.org/DC/elements/1.0/" rel="schema.DC" />
+<link href="//www.ibm.com/favicon.ico" rel="SHORTCUT ICON" />
+<meta content="v17 Template Generator" name="Source" />
+<meta content="public" name="Security" />
+<meta content="IBM Corporation" name="DC.Publisher" />
+<meta content="AU" name="IBM.Country" />
+<meta content="Webmaster ANZ/Australia/Contr/IBM" name="Owner" />
+<meta content="index,follow" name="Robots" />
+<meta content="2011-07-13" scheme="W3CDTF" name="IBM.Effective" />
+
+<meta content="en-AU" scheme="rfc1766" name="DC.Language" />
+<meta content="Friday, 27-Jan-2012 15:14:16 EST" scheme="iso8601" name="DC.Date" />
+<meta content="© Copyright IBM Corp. 2012" name="DC.Rights" />
+
+<meta content="4" name="NC.QuestionType" />
+
+<meta name="Abstract" content="" />
+<meta name="Keywords" content="" />
+<meta name="Description" content="" />
+<meta name="DC.Subject" scheme="IBM_SubjectTaxonomy" content="IBM195"/>
+<meta name="DC.Type" scheme="IBM_ContentClassTaxonomy" content="ZZ999"/>
+<title>IBM - Check youku on page by Toma</title>
+<link href="//1.www.s81c.com/common/v17/css/www.css" rel="stylesheet" title="www" type="text/css" />
+<script src="//code.jquery.com/jquery-1.10.2.min.js" type="text/javascript">//</script>
+<script src="dist/excellentexport.js"></script>
+<script>			  
+$(document).ready(function(){
+	$('#exportBtn').hide();
+	  var a;
+	 function checkFinished(){
+		 a = $('#url').val().split("\n");
+		 var tab = document.getElementById("resultTable") ;
+		 if(tab.rows.length > a.length){
+			ibmweb.overlay.show('overlay-1',"");
+			$('#exportBtn').show();
+		 }
+	 }
+	 
+	 function getUrls(txt){
+					a = $('#url').val().split("\n");
+					for(i=0;i<a.length;i++){
+					   checkPage(a[i],i+1);	
+				    }
+	  }
+	  
+	  function checkPage(links,ii){
+		  $.ajax({
+			  type: "POST",
+			  url: "findyouku.php",
+			  data: { url: links}
+			}).done(function(msg) {	
+			  a = msg.split("||");
+			  if(a[0].indexOf(200)>0){
+                $(".datalist").append('<tr><td>' + ii + '</td><td>'  + links + "</td><td>" + a[0] + '</td><td>' + a[1] + '</td><td>' + a[2] + '</td></tr>');
+			  }else if(a[0].indexOf(301)>0 || a[0].indexOf(302)>0){
+				 $(".datalist").append('<tr><td>' + ii + '</td><td>'  + links + "</td><td>" + a[0] + '</td><td>redirect page</td><td>NA</td><td></td></tr>');
+			  }else{
+			    $(".datalist").append('<tr><td>' + ii + '</td><td>'  + links + "</td><td>" + a[0] + '</td><td class="ibm-highlight-yellow">error page</td><td>NA</td><td></td></tr>');
+			  }
+			  checkFinished();
+		  });
+	  }
+	  
+	  
+	  $("#get").click(function(){
+		 $(this).attr("value","Working, please wait~~");
+	     $(this).attr("disabled","disabled"); 
+		 $(".datalist").empty();
+		 getUrls();
+	  });
+	  
+	  $("#resetBtn").click(function(){
+	     $(".datalist").empty();
+		 $("#url").val("");
+	  });
+	  
+});
+
+$(document).on('click', 'span.dijitDialogCloseIcon', function(){
+	$("#get").attr("value","Starting Checks").removeAttr("disabled"); 
+});
+
+function clearCode(){
+$('.callMeInfo p').each(function(){var tt = $(this).text();$(this).replaceWith(tt);});
+$('.callMeInfo ul li').each(function(){var tt = $(this).text();$(this).replaceWith(tt);});
+$('.callMeInfo img, .callMeInfo .ibm-rule, .callMeInfo br').remove();
+}
+</script> 
+<style type="text/css">
+	.ibm-play-button-medium {
+		display: none;
+	}
+</style>
+</head>
+<body id="ibm-com">
+<div id="ibm-top" class="ibm-landing-page">
+<!-- MASTHEAD_BEGIN -->
+<div class="ibm-access"><a href="#ibm-content">Skip to main content</a></div>
+
+<!-- MASTHEAD_BEGIN -->
+<div id="ibm-masthead">
+<div id="ibm-mast-options">
+<ul>
+<li id="ibm-geo"><a href="http://www.ibm.com/planetwide/select/selector.html"><span class="ibm-access">Select a country/region: </span>Australia</a></li>
+</ul>
+</div>
+<div id="ibm-universal-nav">
+<ul id="ibm-unav-links">
+<li id="ibm-home"><a href="http://www.ibm.com/au/en/">IBM®</a></li>
+</ul>
+<ul id="ibm-menu-links">
+<li><a href="http://www.ibm.com/sitemap/au/en/">Site map</a></li>
+
+</ul>
+<div id="ibm-search-module">
+<form id="ibm-search-form" action="http://www.ibm.com/Search/" method="get">
+<p>
+<label for="q"><span class="ibm-access">Search</span></label>
+<input type="text" maxlength="100" value="" name="q" id="q" />
+<input type="hidden" value="17" name="v" />
+<input type="hidden" value="utf" name="en" />
+<input type="hidden" value="en" name="lang" />
+<input type="hidden" value="au" name="cc" />
+<input type="submit" id="ibm-search" class="ibm-btn-search" value="Submit" />
+</p>
+</form>
+</div>
+</div>
+</div>
+
+<div id="ibm-pcon">
+  <!-- CONTENT_BEGIN -->
+  <div id="ibm-content">
+    <!-- CONTENT_BODY -->
+    <div id="ibm-content-body">
+      <div id="ibm-content-main">      
+      <!-- NESTED DATA TABLE EXAMPLE -->
+      <h2>Check youku on page</h2>
+<div class="ibm-columns">
+<div class="ibm-col-1-1">
+
+<div id=temp></div>
+   <textarea name="url" rows="7" cols="180" id="url"></textarea>
+<div class="ibm-buttons-row">
+<p>
+<input value="Starting Checks" type="button" name="ibm-button" class="ibm-btn-cancel-sec" id="get" /><span class="ibm-sep">&nbsp;</span>
+<input value="Reset page" type="button" name="ibm-button" class="ibm-btn-cancel-sec" id="resetBtn" />
+<span class="ibm-sep">&nbsp;</span>
+<a class="ibm-download-link" download="somedata.xls" href="#" onClick="clearCode();return ExcellentExport.excel(this, 'resultTable', 'Sheet Name Here');" id="exportBtn">Export to Excel</a> </p>
+
+</div>
+<table border="0" cellpadding="0" cellspacing="0" class="ibm-data-table ibm-sortable-table ibm-alternating-col" id="resultTable">
+<thead>
+<tr>
+<th scope="col">No.</th>
+<th scope="col" width="300">Url</th>
+<th scope="col">Page state</th>
+<th scope="col">Title</th>
+<th scope="col">youku link</th>
+</tr>
+</thead>
+<tbody class="datalist">
+      
+</tbody>
+</table>
+
+<div class="ibm-common-overlay" id="overlay-1">
+				<div class="ibm-head">
+					<p><a class="ibm-common-overlay-close" href="#close">Close [x]</a></p>
+				</div>
+				<div class="ibm-body">
+
+					<div class="ibm-main">
+					<h1>Report completed! </h1>
+					</div>
+				</div>
+				<div class="ibm-footer"></div>
+			</div>
+</div>
+</div>
+      </div>
+      <!-- FEATURES_BEGIN -->
+      <div id="ibm-content-sidebar">
+        <div id="ibm-contact-module">
+          <!--IBM Contact Module-->
+        </div>
+        <div id="ibm-merchandising-module">
+          <!--IBM Web Merchandising Module-->
+        </div>
+      </div>
+      <!-- FEATURES_END -->
+      <!-- CONTENT_BODY_END -->
+    </div>
+  </div>
+  <!-- CONTENT_END -->
+  <!-- NAVIGATION_BEGIN -->
+  <div id="ibm-navigation"></div>
+  <!-- NAVIGATION_END -->
+</div>
+<div id="ibm-related-content"></div>
+<!-- FOOTER_BEGIN -->
+
+<!-- FOOTER_BEGIN -->
+<div id="ibm-footer-module">
+</div>
+<div id="ibm-footer">
+<h2 class="ibm-access">Footer links
+</h2>
+<ul>
+<li><a href="http://www.ibm.com/contact/au/en/">Contact</a></li>
+<li><a href="http://www.ibm.com/privacy/au/en/">Privacy</a></li>
+<li><a href="http://www.ibm.com/legal/au/en/">Terms of use</a></li>
+
+</ul>
+</div>
+<!-- FOOTER_END -->
+</div>
+<div id="ibm-metrics">
+<script src="//www.ibm.com/common/stats/stats.js" type="text/javascript">//</script>
+</div>
+</body>
+</html>
